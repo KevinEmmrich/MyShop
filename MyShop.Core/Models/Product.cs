@@ -25,6 +25,7 @@ namespace MyShop.Core.Models
         }
 
         [StringLength(20)]
+        [DisplayName("Product Name")]
         public string Name
         {
             get { return _name; }
@@ -38,7 +39,7 @@ namespace MyShop.Core.Models
         }
 
         [Range(0,1000)]
-        [DisplayName("Product Name")]
+       
         public decimal Price
         {
             get { return _price; }

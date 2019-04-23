@@ -13,17 +13,24 @@ namespace MyShop.DataAccess.InMemory
         ObjectCache cache = MemoryCache.Default;
         List<Product> products; 
 
-
-
-        public ProductRepository()
+      public ProductRepository()
         {
             products = cache["products"] as List<Product>;
             if (products == null)
             {
                 products = new List<Product>();
+                // lets add three new products so I don't have to add manually everytime 
+                products.Add(new Product() { Id = Guid.NewGuid().ToString(), Name = "Test 1", Description = "Test 1 description", Category = "Toys", Price = 15.00M, Image = "image1" });
+                products.Add(new Product() { Id = Guid.NewGuid().ToString(), Name = "Test 2", Description = "Test 2 description", Category = "Books", Price = 25.00M, Image = "image2" });
+                products.Add(new Product() { Id = Guid.NewGuid().ToString(), Name = "Test 3", Description = "Test 3 description", Category = "Toys", Price = 100.00M, Image = "image3" });
+                SaveCache();
             }
         }
 
+        public void SaveCache()
+        {
+            cache["products"] = products;
+        }
         public void Commit()
         {
             cache["products"] = products;
@@ -46,8 +53,6 @@ namespace MyShop.DataAccess.InMemory
                 throw new Exception("Product to be updated Not Found!");
             }
         }
-
-
 
         public Product Find(string id)
         {
