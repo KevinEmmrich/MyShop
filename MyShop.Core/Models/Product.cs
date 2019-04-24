@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace MyShop.Core.Models
 {
-    public class Product
+    public class Product : BaseEntity
     {
-        private string _id;
+        //private string _id;
         private string _name;
         private string _description;
         private decimal _price;
@@ -18,11 +18,11 @@ namespace MyShop.Core.Models
         private string _image;
 
 
-        public string Id
-        {
-            get { return _id; }
-            set { _id = value; }
-        }
+        //public string Id    --- Id is in BaseEntity
+        //{
+        //    get { return _id; }
+        //    set { _id = value; }
+        //}
 
         [StringLength(20)]
         [DisplayName("Product Name")]
@@ -60,10 +60,10 @@ namespace MyShop.Core.Models
         }
 
 
-        public Product()
-        {
-            this.Id = Guid.NewGuid().ToString();
-        }
+        //public Product()     --- constructor is in BaseEntity
+        //{
+        //    this.Id = Guid.NewGuid().ToString();
+        //}
 
 
     }

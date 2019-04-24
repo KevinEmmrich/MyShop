@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace MyShop.Core.Models
 {
-    public class ProductCategory
+    public class ProductCategory : BaseEntity
     {
-        private string _id;
+        //private string _id;
         private string _category;
 
-        public string Id
-        {
-            get { return _id; }
-            set { _id = value; }
-        }
+        //public string Id    --- Id is in BaseEntity
+        //{
+        //    get { return _id; }
+        //    set { _id = value; }
+        //}
 
         public string Category
         {
@@ -25,13 +25,13 @@ namespace MyShop.Core.Models
 
         ///////////////////   Methods  Below  /////////////////////////
 
-        public ProductCategory()
-        {
-            this.Id = Guid.NewGuid().ToString();
-        }
+        //public ProductCategory()    --- Constructor is in BaseEntity
+        //{
+        //    this.Id = Guid.NewGuid().ToString();
+        //}
 
 
-    
+
 
     }
 }
