@@ -91,7 +91,11 @@ namespace MyShop.WebUI.Controllers
                     return View(product);
                 }
 
+                productToEdit.Description = product.Description;
+                productToEdit.Name = product.Name;
+                productToEdit.Price = product.Price;
                 productToEdit.Category = product.Category;
+                productToEdit.Image = product.Image;
               
 
                 context.Commit();

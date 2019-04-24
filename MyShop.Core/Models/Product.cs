@@ -38,8 +38,7 @@ namespace MyShop.Core.Models
             set { _description = value; }
         }
 
-        [Range(0,1000)]
-       
+        [Range(0.1,1000)]      
         public decimal Price
         {
             get { return _price; }
