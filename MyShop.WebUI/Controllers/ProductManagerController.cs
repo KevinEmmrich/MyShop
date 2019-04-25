@@ -27,6 +27,16 @@ namespace MyShop.WebUI.Controllers
         public ActionResult Index()
         {
             List<Product> products = context.Collection().ToList();
+            if (products.Count == 0)
+            {
+                Product product = new Product() { Id = Guid.NewGuid().ToString(), Name = "Test 1", Description = "Test 1 description", Category = "Toys", Price = 15.00M, Image = "image1" };
+                Create(product);
+                product = new Product() { Id = Guid.NewGuid().ToString(), Name = "Test 2", Description = "Test 2 description", Category = "Books", Price = 25.00M, Image = "image2" };
+                Create(product);
+                product = new Product() { Id = Guid.NewGuid().ToString(), Name = "Test 3", Description = "Test 3 description", Category = "Toys", Price = 100.00M, Image = "image3" };
+                Create(product);
+                products = context.Collection().ToList();
+            }
             return View(products);
         }
 

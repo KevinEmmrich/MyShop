@@ -23,6 +23,14 @@ namespace MyShop.WebUI.Controllers
         public ActionResult Index()
         {
             List<ProductCategory> productCategories = context.Collection().ToList();
+            if (productCategories.Count == 0)
+            {
+                ProductCategory category = new ProductCategory() { Id = Guid.NewGuid().ToString(), Category = "Toys" };
+                Create(category);
+                category = new ProductCategory() { Id = Guid.NewGuid().ToString(), Category = "Books" };
+                Create(category);
+                productCategories = context.Collection().ToList();
+            }
             return View(productCategories);
         }
 

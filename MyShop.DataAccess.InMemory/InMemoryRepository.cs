@@ -25,30 +25,7 @@ namespace MyShop.DataAccess.InMemory
             if (items == null)
             {
                 items = new List<T>();
-
-                // let's see if we can add demo data for the inMemory processes.
-                if (className == "Product")
-                {
-                    //List<Product> products = new List<Product>();
-                    //products = (List<Product>)cache["products"];
-                    //products.Add(new Product() { Id = Guid.NewGuid().ToString(), Name = "Test 1", Description = "Test 1 description", Category = "Toys", Price = 15.00M, Image = "image1" });
-                    //products.Add(new Product() { Id = Guid.NewGuid().ToString(), Name = "Test 2", Description = "Test 2 description", Category = "Books", Price = 25.00M, Image = "image2" });
-                    //products.Add(new Product() { Id = Guid.NewGuid().ToString(), Name = "Test 3", Description = "Test 3 description", Category = "Toys", Price = 100.00M, Image = "image3" });
-                    //SaveCache();
-                }
-
-                if (className == "ProductCategory")
-                {
-                    //List<ProductCategory> productCategories = new List<ProductCategory>();
-                    //productCategories = (List<ProductCategory>)cache["productCategories"];
-                    //// lets add two new product categories so I don't have to add manually everytime 
-                    //productCategories.Add(new ProductCategory() { Id = Guid.NewGuid().ToString(), Category = "Toys" });
-                    //productCategories.Add(new ProductCategory() { Id = Guid.NewGuid().ToString(), Category = "Books" });
-                    //SaveCache();
-                }
-
-
-            }
+          }
         }
 
         public void SaveCache()

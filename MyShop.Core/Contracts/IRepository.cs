@@ -11,7 +11,7 @@ namespace MyShop.Core.Contracts
         void Delete(string id);
         T Find(string id);
         void Insert(T t);
-        void SaveCache();
+        //void SaveCache();
         void Update(T t);
     }
 }
