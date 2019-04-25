@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -27,16 +28,19 @@ namespace MyShop.WebUI.Controllers
         public ActionResult Index()
         {
             List<Product> products = context.Collection().ToList();
-            if (products.Count == 0)
-            {
-                Product product = new Product() { Id = Guid.NewGuid().ToString(), Name = "Test 1", Description = "Test 1 description", Category = "Toys", Price = 15.00M, Image = "image1" };
-                Create(product);
-                product = new Product() { Id = Guid.NewGuid().ToString(), Name = "Test 2", Description = "Test 2 description", Category = "Books", Price = 25.00M, Image = "image2" };
-                Create(product);
-                product = new Product() { Id = Guid.NewGuid().ToString(), Name = "Test 3", Description = "Test 3 description", Category = "Toys", Price = 100.00M, Image = "image3" };
-                Create(product);
-                products = context.Collection().ToList();
-            }
+
+            // now adding images -- remove the auto-populate since signature of Create() has changed.
+            //if (products.Count == 0)
+            //{
+            //    Product product = new Product() { Id = Guid.NewGuid().ToString(), Name = "Test 1", Description = "Test 1 description", Category = "Toys", Price = 15.00M, Image = "image1" };
+            //    Create(product);
+            //    product = new Product() { Id = Guid.NewGuid().ToString(), Name = "Test 2", Description = "Test 2 description", Category = "Books", Price = 25.00M, Image = "image2" };
+            //    Create(product);
+            //    product = new Product() { Id = Guid.NewGuid().ToString(), Name = "Test 3", Description = "Test 3 description", Category = "Toys", Price = 100.00M, Image = "image3" };
+            //    Create(product);
+            //    products = context.Collection().ToList();
+            //}
+
             return View(products);
         }
 
@@ -53,7 +57,7 @@ namespace MyShop.WebUI.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(Product product)
+        public ActionResult Create(Product product, HttpPostedFileBase file)
         {
             if (!ModelState.IsValid)
             {
@@ -61,6 +65,11 @@ namespace MyShop.WebUI.Controllers
             }
             else
             {
+                if (file != null)
+                {
+                    product.Image = product.Id + Path.GetExtension(file.FileName);
+                    file.SaveAs(Server.MapPath(@"/Content/ProductImages/" + product.Image));
+                }
                 context.Insert(product);
                 context.Commit();
                 return RedirectToAction("Index");
@@ -88,7 +97,7 @@ namespace MyShop.WebUI.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(Product product, string id)
+        public ActionResult Edit(Product product, string id,  HttpPostedFileBase file)
             {
             Product productToEdit = context.Find(id);
                if (productToEdit == null)
@@ -101,12 +110,16 @@ namespace MyShop.WebUI.Controllers
                 {
                     return View(product);
                 }
-
+                if (file != null)
+                {
+                    productToEdit.Image = product.Id + Path.GetExtension(file.FileName);
+                    file.SaveAs(Server.MapPath(@"/Content/ProductImages/" +  productToEdit.Image) );
+                }
                 productToEdit.Description = product.Description;
                 productToEdit.Name = product.Name;
                 productToEdit.Price = product.Price;
                 productToEdit.Category = product.Category;
-                productToEdit.Image = product.Image;
+               
               
 
                 context.Commit();

@@ -45,8 +45,12 @@ namespace MyShop.WebUI
             // container.LoadConfiguration();
 
             // TODO: Register your type's mappings here.  example: container.RegisterType<IProductRepository, ProductRepository>();
+
+            //In Memory Processes (cache storage)
             //container.RegisterType<IRepository<Product>, InMemoryRepository<Product> >();
             //container.RegisterType<IRepository<ProductCategory>, InMemoryRepository<ProductCategory> >();
+
+            //SQL Database storage
             container.RegisterType<IRepository<Product>, SQLRepository<Product>>();
             container.RegisterType<IRepository<ProductCategory>, SQLRepository<ProductCategory>>();
         }
