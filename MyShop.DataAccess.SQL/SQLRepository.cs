@@ -40,6 +40,7 @@ namespace MyShop.DataAccess.SQL
             }
 
             dbSet.Remove(t);
+
         }
 
         public T Find(string id)
