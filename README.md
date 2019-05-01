@@ -1,2 +1,2 @@
 # MyShop
-MyShop E-Commerce Demo Udemy MVC Class 
+My Shop eCommerce Demo

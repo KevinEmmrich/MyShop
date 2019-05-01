@@ -11,7 +11,6 @@ namespace MyShop.WebUI.Controllers
 {
     public class HomeController : Controller
     {
-
         IRepository<Product> context;
         IRepository<ProductCategory> productCategories;
 
@@ -21,43 +20,36 @@ namespace MyShop.WebUI.Controllers
             productCategories = productCategoryContext;
         }
 
-
-        public ActionResult Index(string category=null)
+        public ActionResult Index(string Category=null)
         {
-            List<Product> products; // = context.Collection().ToList();
+            List<Product> products;
             List<ProductCategory> categories = productCategories.Collection().ToList();
 
-            if (category == null)
+            if (Category == null)
             {
-                // show all products
                 products = context.Collection().ToList();
             }
-            else
-            {
-                products = context.Collection().Where(p => p.Category == category).ToList();
+            else {
+                products = context.Collection().Where(p => p.Category == Category).ToList();
             }
 
             ProductListViewModel model = new ProductListViewModel();
             model.Products = products;
             model.ProductCategories = categories;
 
+
             return View(model);
         }
 
-        public ActionResult Details(string id)
-        {
-            Product product = context.Find(id);
+        public ActionResult Details(string Id) {
+            Product product = context.Find(Id);
             if (product == null)
             {
                 return HttpNotFound();
             }
-            else
-            {
+            else {
                 return View(product);
             }
-
-
-
         }
 
         public ActionResult About()

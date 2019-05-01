@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("MyShop.DataAccess.InMemory")]
-[assembly: AssemblyCopyright("Copyright ©  2019")]
+[assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("b35ba36f-66cb-4756-83fe-c3531507af18")]
+[assembly: Guid("e7fd92a1-7304-4f70-9ba5-e214cb28a863")]
 
 // Version information for an assembly consists of the following four values:
 //

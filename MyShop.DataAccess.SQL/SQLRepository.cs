@@ -14,8 +14,7 @@ namespace MyShop.DataAccess.SQL
         internal DataContext context;
         internal DbSet<T> dbSet;
 
-        public SQLRepository(DataContext context)
-        {
+        public SQLRepository(DataContext context) {
             this.context = context;
             this.dbSet = context.Set<T>();
         }
@@ -25,39 +24,29 @@ namespace MyShop.DataAccess.SQL
             return dbSet;
         }
 
-        
         public void Commit()
         {
             context.SaveChanges();
         }
 
-        public void Delete(string id)
+        public void Delete(string Id)
         {
-            var t = Find(id);
+            var t = Find(Id);
             if (context.Entry(t).State == EntityState.Detached)
-            {
                 dbSet.Attach(t);
-            }
 
             dbSet.Remove(t);
-
         }
 
-        public T Find(string id)
+        public T Find(string Id)
         {
-            return dbSet.Find(id);
+            return dbSet.Find(Id);
         }
 
         public void Insert(T t)
         {
             dbSet.Add(t);
         }
-
-        // for some reason this is not in the instructor IRepository -- maybe I added it on my own to try to pre-fill products and categories.
-        //public void SaveCache()
-        //{
-        //    throw new NotImplementedException();
-        //}
 
         public void Update(T t)
         {

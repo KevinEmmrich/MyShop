@@ -4,14 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{26C74694-1488-4363-9555-FB0B4342E870}</ProjectGuid>
+    <ProjectGuid>{462AA931-D9E7-4B8A-840B-C8026F2C0FC0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MyShop.Services</RootNamespace>
     <AssemblyName>MyShop.Services</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -47,7 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MyShop.Core\MyShop.Core.csproj">
-      <Project>{07546bb5-ce94-4da3-a24f-9ee81675f626}</Project>
+      <Project>{9b029460-6f4e-46ae-9b88-08c5fe08c0a4}</Project>
       <Name>MyShop.Core</Name>
     </ProjectReference>
   </ItemGroup>

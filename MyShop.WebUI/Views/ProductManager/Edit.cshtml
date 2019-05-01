@@ -7,10 +7,10 @@
 <h2>Edit</h2>
 
 
-@using (Html.BeginForm("Edit", "ProductManager", FormMethod.Post, new { encType = "multipart/form-data" }))
+@using (Html.BeginForm("Edit", "ProductManager", FormMethod.Post, new { encType="multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-
+    
     <div class="form-horizontal">
         <h4>Product</h4>
         <hr />
@@ -18,9 +18,8 @@
         @Html.HiddenFor(model => model.Product.Id)
 
         <div class="col-md-2">
-            <img class="img-responsive" src="~/Content/ProductImages/@Model.Product.Image" />
+            <img class="img-responsive" src="~/Content/ProductImages/@Model.Product.Image"/>
         </div>
-
         <div class="col-md-10">
 
             <div class="form-group">
@@ -50,11 +49,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.Product.Category, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @*@Html.EditorFor(model => model.Product.Category, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Product.Category, "", new { @class = "text-danger" })*@
-
                     @Html.DropDownListFor(model => model.Product.Category, new SelectList(Model.ProductCategories, "Category", "Category"), new { htmlAttributes = new { @class = "form-control" } })
-
                 </div>
             </div>
 
@@ -70,10 +65,8 @@
                     <input type="submit" value="Save" class="btn btn-default" />
                 </div>
             </div>
-
-        </div> @* end <div class=" = col-md-10">*@
-
-</div>  @*End Context div class="form-horizontal"*@
+        </div>
+    </div>
 }
 
 <div>

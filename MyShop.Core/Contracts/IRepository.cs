@@ -2,16 +2,14 @@
 using MyShop.Core.Models;
 
 namespace MyShop.Core.Contracts
-
 {
     public interface IRepository<T> where T : BaseEntity
     {
         IQueryable<T> Collection();
         void Commit();
-        void Delete(string id);
-        T Find(string id);
+        void Delete(string Id);
+        T Find(string Id);
         void Insert(T t);
-        //void SaveCache();
         void Update(T t);
     }
 }

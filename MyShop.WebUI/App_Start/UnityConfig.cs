@@ -3,9 +3,11 @@ using MyShop.Core.Models;
 using MyShop.DataAccess.InMemory;
 using MyShop.DataAccess.SQL;
 using MyShop.Services;
+using MyShop.WebUI.Controllers;
 using System;
 
 using Unity;
+using Unity.Injection;
 
 namespace MyShop.WebUI
 {
@@ -45,18 +47,19 @@ namespace MyShop.WebUI
             // Make sure to add a Unity.Configuration to the using statements.
             // container.LoadConfiguration();
 
-            // TODO: Register your type's mappings here.  example: container.RegisterType<IProductRepository, ProductRepository>();
-
-            //In Memory Processes (cache storage)
-            //container.RegisterType<IRepository<Product>, InMemoryRepository<Product> >();
-            //container.RegisterType<IRepository<ProductCategory>, InMemoryRepository<ProductCategory> >();
-
-            //SQL Database storage
+            // TODO: Register your type's mappings here.
+            // container.RegisterType<IProductRepository, ProductRepository>();
             container.RegisterType<IRepository<Product>, SQLRepository<Product>>();
             container.RegisterType<IRepository<ProductCategory>, SQLRepository<ProductCategory>>();
             container.RegisterType<IRepository<Basket>, SQLRepository<Basket>>();
             container.RegisterType<IRepository<BasketItem>, SQLRepository<BasketItem>>();
             container.RegisterType<IBasketService, BasketService>();
+
+            /// Needed to all these lines to get the ASP.NET authentication working again!  Don't know how/when Unity got involved with authentication.  Not needed by instructor.
+            container.RegisterType<AccountController>(new InjectionConstructor());
+            container.RegisterType<ManageController>(new InjectionConstructor());
+            //container.RegisterType<RolesAdminController>(new InjectionConstructor());
+            // container.RegisterType<UsersAdminController>(new InjectionConstructor());
         }
     }
 }

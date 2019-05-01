@@ -15,81 +15,62 @@ namespace MyShop.DataAccess.InMemory
         List<T> items;
         string className;
 
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        public InMemoryRepository()
-        {
+        public InMemoryRepository() {
             className = typeof(T).Name;
             items = cache[className] as List<T>;
-            if (items == null)
-            {
+            if (items == null) {
                 items = new List<T>();
-          }
+            }
         }
 
-        public void SaveCache()
-        {
-            cache[className] = className;
-        }
         public void Commit()
         {
             cache[className] = items;
         }
 
-        public void Insert(T t)
-        {
+        public void Insert(T t) {
             items.Add(t);
         }
 
-        public void Update(T t)
-        {
-            T itemToUpdate = items.Find(i => i.Id == t.Id);
-            if (itemToUpdate != null)
+        public void Update(T t) {
+            T tToUpdate = items.Find(i => i.Id == t.Id);
+
+            if (tToUpdate != null)
             {
-                itemToUpdate = t;
+                tToUpdate = t;
             }
-            else
-            {
-                throw new Exception($"{className} not found.");
+            else {
+                throw new Exception(className + " Not found");
             }
         }
 
-
-        public T Find(string id)
-        {
-            T item = items.Find(i => i.Id == id);
-            if (item != null)
-            {
-                return item;
+        public T Find(string Id) {
+            T t = items.Find(i => i.Id == Id);
+            if (t != null) {
+                return t;
             }
             else
             {
-                throw new Exception($"{className} with Id of {id} not found.");
+                throw new Exception(className + " Not found");
             }
         }
 
-        public IQueryable<T> Collection()
-        {
+        public IQueryable<T> Collection() {
             return items.AsQueryable();
         }
 
-        public void Delete(string id)
-        {
-            T itemToDelete = items.Find(p => p.Id == id);
-            if (itemToDelete != null)
+        public void Delete(string Id) {
+            T tToDelete = items.Find(i => i.Id == Id);
+
+            if (tToDelete != null)
             {
-                items.Remove(itemToDelete);
+                items.Remove(tToDelete);
             }
             else
             {
-                throw new Exception($"Cannot find {className} with ID of {id} to delete!");
+                throw new Exception(className + " Not found");
             }
         }
 
-
-
-
-
-    } // end class InMemoryRepository<T>
-} // end namespace MyShop.DataAccess.InMemory
+    }
+}

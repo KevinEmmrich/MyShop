@@ -4,14 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{27F64218-0B13-4517-B984-90EF03247241}</ProjectGuid>
+    <ProjectGuid>{3A4704F8-042D-4450-A79A-AA096ED4F5CD}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MyShop.DataAccess.SQL</RootNamespace>
     <AssemblyName>MyShop.DataAccess.SQL</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -49,13 +48,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataContext.cs" />
-    <Compile Include="Migrations\201904251357460_Initial.cs" />
-    <Compile Include="Migrations\201904251357460_Initial.Designer.cs">
-      <DependentUpon>201904251357460_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201711071327340_Initial.cs" />
+    <Compile Include="Migrations\201711071327340_Initial.Designer.cs">
+      <DependentUpon>201711071327340_Initial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201904281133020_AddBasket.cs" />
-    <Compile Include="Migrations\201904281133020_AddBasket.Designer.cs">
-      <DependentUpon>201904281133020_AddBasket.cs</DependentUpon>
+    <Compile Include="Migrations\201711091321341_AddBasket.cs" />
+    <Compile Include="Migrations\201711091321341_AddBasket.Designer.cs">
+      <DependentUpon>201711091321341_AddBasket.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -67,16 +66,16 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MyShop.Core\MyShop.Core.csproj">
-      <Project>{07546BB5-CE94-4DA3-A24F-9EE81675F626}</Project>
+      <Project>{9B029460-6F4E-46AE-9B88-08C5FE08C0A4}</Project>
       <Name>MyShop.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201904251357460_Initial.resx">
-      <DependentUpon>201904251357460_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201711071327340_Initial.resx">
+      <DependentUpon>201711071327340_Initial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201904281133020_AddBasket.resx">
-      <DependentUpon>201904281133020_AddBasket.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201711091321341_AddBasket.resx">
+      <DependentUpon>201711091321341_AddBasket.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
