@@ -20,11 +20,14 @@ namespace MyShop.WebUI.Controllers
         {
         }
 
-        public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
-        {
-            UserManager = userManager;
-            SignInManager = signInManager;
-        }
+        /// <summary>
+        /// Removing this constructor after adding customer model info.  supposed to avoid conflicts between unity and asp.net authentication.
+        /// </summary>
+        //public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
+        //{
+        //    UserManager = userManager;
+        //    SignInManager = signInManager;
+        //}
 
         public ApplicationSignInManager SignInManager
         {

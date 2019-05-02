@@ -8,6 +8,8 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using MyShop.Core.Contracts;
+using MyShop.Core.Models;
 using MyShop.WebUI.Models;
 
 namespace MyShop.WebUI.Controllers
@@ -17,16 +19,35 @@ namespace MyShop.WebUI.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private IRepository<Customer>  customerRepository;
 
-        public AccountController()
+        /// <summary>
+        /// Removing this parameterless Contrstructor after adding the Customer Model in -- why???
+        /// </summary>
+        //public AccountController()
+        //{
+        //}
+
+        //  ******************************************************************************
+       
+        /// <summary>
+        /// Removing the userManager and SignInManager from the constructor to overcome Unity vs ASP authentication conflicts.
+        /// </summary>
+        /// <param name="customerRepository"></param>
+        public AccountController(IRepository<Customer> customerRepository)
         {
+            
+            this.customerRepository = customerRepository;
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
-        {
-            UserManager = userManager;
-            SignInManager = signInManager;
-        }
+        //public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, IRepository<Customer> customerRepository)
+        //{
+        //    UserManager = userManager;
+        //    SignInManager = signInManager;
+        //    this.customerRepository = customerRepository;
+        //}
+
+        // *******************************************************************************
 
         public ApplicationSignInManager SignInManager
         {
@@ -155,6 +176,22 @@ namespace MyShop.WebUI.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    // register Customer model and link to authentication account
+                    Customer customer = new Customer()
+                    {
+                        UserId = user.Id,
+                        FirstName = model.FirstName,
+                        LastName = model.LastName,
+                        Email = model.Email,
+                        Street = model.Street,
+                        City = model.City,
+                        State = model.State,
+                        ZipCode = model.ZipCode
+                    };
+
+                    customerRepository.Insert(customer);
+                    customerRepository.Commit();
+
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
