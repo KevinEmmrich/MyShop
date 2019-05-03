@@ -53,9 +53,12 @@ namespace MyShop.WebUI
             container.RegisterType<IRepository<ProductCategory>, SQLRepository<ProductCategory>>();
             container.RegisterType<IRepository<Basket>, SQLRepository<Basket>>();
             container.RegisterType<IRepository<BasketItem>, SQLRepository<BasketItem>>();
-            container.RegisterType<IBasketService, BasketService>();
-            container.RegisterType<IRepository<Customer>, SQLRepository<Customer> >();
+            container.RegisterType<IRepository<Customer>, SQLRepository<Customer>>();
+            container.RegisterType<IRepository<Order>, SQLRepository<Order>>();
 
+
+            container.RegisterType<IBasketService, BasketService>();
+            container.RegisterType<IOrderService, OrderService>();
 
             /// Needed to all these lines to get the ASP.NET authentication working again!  Don't know how/when Unity got involved with authentication.  Not needed by instructor.
             /// *****************  After adding in customer model, I now need to re-remove this registrations !!!!!!!!!!!!!!!!!!!!!!!!!!!!
